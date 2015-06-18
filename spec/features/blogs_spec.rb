@@ -10,4 +10,15 @@ feature 'Blogs' do
     expect(page).to have_content 'Hello, world!'
     expect(page).to have_content 'This is awesome blog.'
   end
+
+  scenario 'Create blog with JS', js: true do
+    visit new_blog_path
+    fill_in 'Title', with: 'Hello, world!'
+    pending 'Capybara::ElementNotFound: Unable to find field "Content"'
+    fill_in 'Content', with: 'This is awesome blog.'
+    click_button 'Create Blog'
+    expect(page).to have_content 'Blog was successfully created.'
+    expect(page).to have_content 'Hello, world!'
+    expect(page).to have_content 'This is awesome blog.'
+  end
 end
