@@ -22,5 +22,20 @@ module SummernoteRspecSandbox
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixtures: false,
+                       view_specs: false,
+                       controller_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       request_specs: false
+      g.assets false
+      g.helper false
+      g.javascripts false
+      g.stylesheets false
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
   end
 end
